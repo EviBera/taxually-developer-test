@@ -9,7 +9,7 @@ namespace Taxually.TechnicalTest.Services
         {
         }
 
-        public override void SaveDataToDestination()
+        public override async Task SaveDataToDestinationAsync()
         {
             // France requires an excel spreadsheet to be uploaded to register for a VAT number
             var csvBuilder = new StringBuilder();
@@ -18,7 +18,7 @@ namespace Taxually.TechnicalTest.Services
             var csv = Encoding.UTF8.GetBytes(csvBuilder.ToString());
             var excelQueueClient = new TaxuallyQueueClient();
             // Queue file to be processed
-            excelQueueClient.EnqueueAsync("vat-registration-csv", csv).Wait();
+            await excelQueueClient.EnqueueAsync("vat-registration-csv", csv);
         }
     }
 }

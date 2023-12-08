@@ -9,7 +9,7 @@ namespace Taxually.TechnicalTest.Services
             this.request = request;
         }
 
-        public abstract void SaveDataToDestination();
+        public abstract Task SaveDataToDestinationAsync();
 
         
     }

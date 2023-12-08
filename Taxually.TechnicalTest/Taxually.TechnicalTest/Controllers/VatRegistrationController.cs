@@ -22,11 +22,11 @@ namespace Taxually.TechnicalTest.Controllers
         /// Registers a company for a VAT number in a given country
         /// </summary>
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] VatRegistrationRequest request)
+        public async Task <ActionResult> Post([FromBody] VatRegistrationRequest request)
         {
             try
             {
-                _vatRegistrationServiceFactory.CreateSuitableInterfaceForVRR(request).SaveDataToDestination();
+                await _vatRegistrationServiceFactory.CreateSuitableInterfaceForVRR(request).SaveDataToDestinationAsync();
                 return Ok();
             }
             catch (Exception ex)

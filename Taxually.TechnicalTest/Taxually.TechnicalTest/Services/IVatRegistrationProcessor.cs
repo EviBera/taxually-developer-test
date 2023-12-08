@@ -2,6 +2,6 @@
 {
     public interface IVatRegistrationProcessor
     {
-        void SaveDataToDestination();
+        Task SaveDataToDestinationAsync();
     }
 }

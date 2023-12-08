@@ -8,11 +8,11 @@ namespace Taxually.TechnicalTest.Services
         public GBVatRegistrationProcessor(VatRegistrationRequest request) : base(request)
         {
         }
-        public override void SaveDataToDestination()
+        public override async Task SaveDataToDestinationAsync()
         {
             // UK has an API to register for a VAT number
             var httpClient = new TaxuallyHttpClient();
-            httpClient.PostAsync("https://api.uktax.gov.uk", request).Wait();
+            await httpClient.PostAsync("https://api.uktax.gov.uk", request);
         }
     }
 }

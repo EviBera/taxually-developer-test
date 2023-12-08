@@ -9,7 +9,7 @@ namespace Taxually.TechnicalTest.Services
         {
         }
 
-        public override void SaveDataToDestination()
+        public override async Task SaveDataToDestinationAsync()
         {
             // Germany requires an XML document to be uploaded to register for a VAT number
             using (var stringwriter = new StringWriter())
@@ -19,7 +19,7 @@ namespace Taxually.TechnicalTest.Services
                 var xml = stringwriter.ToString();
                 var xmlQueueClient = new TaxuallyQueueClient();
                 // Queue xml doc to be processed
-                xmlQueueClient.EnqueueAsync("vat-registration-xml", xml).Wait();
+                await xmlQueueClient.EnqueueAsync("vat-registration-xml", xml);
             }
         }
     }
