@@ -42,11 +42,11 @@ namespace TechnicalTestUnitTests
 
 
         [Test]
-        public async Task PostReturnsBadRequest_IfServicesFail()
+        public async Task PostReturnsBadRequest_AndCorrectErrorMessage_IfServicesFail()
         {
             //Arrange
             _vatRegistrationProcessorMock.Setup(service => 
-                service.SaveDataToDestinationAsync()).Throws(new Exception("error"));
+                service.SaveDataToDestinationAsync()).Throws(new Exception("Have a nice day!"));
             _vatRegistrationServiceFactoryMock.Setup(factory => 
                 factory.CreateSuitableInterfaceForVRR(It.IsAny<VatRegistrationRequest>()))
                 .Returns(_vatRegistrationProcessorMock.Object);
@@ -54,9 +54,13 @@ namespace TechnicalTestUnitTests
 
             //Act
             var result = await _controller.Post(testRequest);
-
+            var badRequestResult = result as BadRequestObjectResult;
+            var errorMessage = badRequestResult.Value as string;
+            
             //Assert
             Assert.IsInstanceOf<BadRequestObjectResult>(result);
+            Assert.That(errorMessage, Is.EqualTo("Have a nice day!"));
+
         }
     }
 }
