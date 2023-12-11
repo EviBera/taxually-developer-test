@@ -26,7 +26,7 @@ namespace Taxually.TechnicalTest.Controllers
         {
             try
             {
-                await _vatRegistrationServiceFactory.CreateSuitableInterfaceForVRR(request).SaveDataToDestinationAsync();
+                await _vatRegistrationServiceFactory.CreateProcessorInstance(request).SaveDataToDestinationAsync();
                 return Ok();
             }
             catch (Exception ex)

@@ -4,6 +4,6 @@ namespace Taxually.TechnicalTest.Services
 {
     public interface IVatRegistrationServiceFactory
     {
-        IVatRegistrationProcessor CreateSuitableInterfaceForVRR(VatRegistrationRequest request);
+        IVatRegistrationProcessor CreateProcessorInstance(VatRegistrationRequest request);
     }
 }

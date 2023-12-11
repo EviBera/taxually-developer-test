@@ -29,7 +29,7 @@ namespace TechnicalTestUnitTests
         {
             //Arrange
             _vatRegistrationServiceFactoryMock.Setup(factory => 
-                factory.CreateSuitableInterfaceForVRR(It.IsAny<VatRegistrationRequest>()))
+                factory.CreateProcessorInstance(It.IsAny<VatRegistrationRequest>()))
                 .Returns(_vatRegistrationProcessorMock.Object);
             var testRequest = new VatRegistrationRequest();
 
@@ -48,7 +48,7 @@ namespace TechnicalTestUnitTests
             _vatRegistrationProcessorMock.Setup(service => 
                 service.SaveDataToDestinationAsync()).Throws(new Exception("Have a nice day!"));
             _vatRegistrationServiceFactoryMock.Setup(factory => 
-                factory.CreateSuitableInterfaceForVRR(It.IsAny<VatRegistrationRequest>()))
+                factory.CreateProcessorInstance(It.IsAny<VatRegistrationRequest>()))
                 .Returns(_vatRegistrationProcessorMock.Object);
             var testRequest = new VatRegistrationRequest();
 

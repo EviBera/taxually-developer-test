@@ -17,7 +17,7 @@ namespace Taxually.TechnicalTest.Services
             _taxuallyQueueClient = taxuallyQueueClient;
         }
 
-        public IVatRegistrationProcessor CreateSuitableInterfaceForVRR(VatRegistrationRequest request)
+        public IVatRegistrationProcessor CreateProcessorInstance(VatRegistrationRequest request)
         {
             switch(request.Country)
             {
