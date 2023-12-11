@@ -5,14 +5,20 @@ namespace Taxually.TechnicalTest.Services
 {
     public class GBVatRegistrationProcessor : VatRegistrationProcessorBase
     {
-        public GBVatRegistrationProcessor(VatRegistrationRequest request) : base(request)
+        private readonly ITaxuallyHttpClient _taxuallyHttpClient;
+        private readonly IConfiguration _configuration;
+        public GBVatRegistrationProcessor(VatRegistrationRequest request, 
+            ITaxuallyHttpClient taxuallyHttpClient,
+            IConfiguration configuration) : base(request)
         {
+            _taxuallyHttpClient = taxuallyHttpClient;   
+            _configuration = configuration;
         }
         public override async Task SaveDataToDestinationAsync()
         {
             // UK has an API to register for a VAT number
-            var httpClient = new TaxuallyHttpClient();
-            await httpClient.PostAsync("https://api.uktax.gov.uk", request);
+            var url = _configuration["GBVatRegistrationURL"];
+            await _taxuallyHttpClient.PostAsync(url, request);
         }
     }
 }

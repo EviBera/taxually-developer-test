@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taxually.TechnicalTest", "Taxually.TechnicalTest\Taxually.TechnicalTest.csproj", "{A119A885-BCD4-473B-861A-480AA3C87EB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechnicalTestUnitTests", "TechnicalTestUnitTests\TechnicalTestUnitTests.csproj", "{9E563158-C51C-423D-AB4F-E08CDA2C4E14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechnicalTestUnitTests", "TechnicalTestUnitTests\TechnicalTestUnitTests.csproj", "{9E563158-C51C-423D-AB4F-E08CDA2C4E14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

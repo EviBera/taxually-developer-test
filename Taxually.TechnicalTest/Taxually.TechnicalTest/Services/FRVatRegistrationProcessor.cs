@@ -5,8 +5,11 @@ namespace Taxually.TechnicalTest.Services
 {
     public class FRVatRegistrationProcessor : VatRegistrationProcessorBase
     {
-        public FRVatRegistrationProcessor(VatRegistrationRequest request) : base(request)
+        private readonly ITaxuallyQueueClient _excelQueueClient;
+        public FRVatRegistrationProcessor(VatRegistrationRequest request, 
+            ITaxuallyQueueClient taxuallyQueueClient) : base(request)
         {
+            _excelQueueClient = taxuallyQueueClient;
         }
 
         public override async Task SaveDataToDestinationAsync()
@@ -16,9 +19,8 @@ namespace Taxually.TechnicalTest.Services
             csvBuilder.AppendLine("CompanyName,CompanyId");
             csvBuilder.AppendLine($"{request.CompanyName}{request.CompanyId}");
             var csv = Encoding.UTF8.GetBytes(csvBuilder.ToString());
-            var excelQueueClient = new TaxuallyQueueClient();
             // Queue file to be processed
-            await excelQueueClient.EnqueueAsync("vat-registration-csv", csv);
+            await _excelQueueClient.EnqueueAsync("vat-registration-csv", csv);
         }
     }
 }

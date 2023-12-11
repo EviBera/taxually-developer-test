@@ -1,3 +1,4 @@
+using Taxually.TechnicalTest;
 using Taxually.TechnicalTest.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IVatRegistrationServiceFactory, VatRegistrationServiceFactory>();
+builder.Services.AddScoped<ITaxuallyHttpClient, TaxuallyHttpClient>();
+builder.Services.AddScoped<ITaxuallyQueueClient, TaxuallyQueueClient>();
 
 var app = builder.Build();
 
